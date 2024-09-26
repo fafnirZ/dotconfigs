@@ -1,1 +1,6 @@
 # nvim
+
+## profiles
+
+default/
+    
