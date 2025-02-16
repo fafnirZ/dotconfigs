@@ -17,5 +17,39 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
 require("lazy").setup({
+    -- cattpuccin (colour)
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    -- telescope 
+    {
+        'nvim-telescope/telescope.nvim', tag = '0.1.8',
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    -- nvim tree
+    {
+      "nvim-tree/nvim-tree.lua",
+      version = "*",
+      lazy = false,
+      dependencies = {
+        "nvim-tree/nvim-web-devicons",
+      },
+      config = function()
+        require("nvim-tree").setup {}
+      end,
+    },
+      -- Visualize buffers as tabs
+    {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+    -- nvim-lspconfig
+    {'neovim/nvim-lspconfig'},
+    -- nvim-cmp
+    {'hrsh7th/nvim-cmp',
+        dependencies = {
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'hrsh7th/cmp-cmdline'},
+            {'hrsh7th/cmp-vsnip'},
+       },
+        config = function()
+            require("plugins.cmp") -- my plugins/cmp.lua
+        end
+    }
 })
