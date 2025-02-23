@@ -10,6 +10,7 @@ default/
 
 ```
 ln -s $(pwd)/default_config ~/.config/nvim
+ln -s $(pwd)/tmux/tmux.conf ~/.tmux.conf
 ```
 
     
