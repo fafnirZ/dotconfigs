@@ -1,0 +1,68 @@
+{
+    "editor.tabSize": 4,
+    // default
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": false,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+      {
+        "before": ["j", "j"],
+        "after": ["<Esc>"]
+      }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+      {
+        "before": ["<leader>", "d"],
+        "after": ["d", "d"]
+      },
+      {
+        "before": ["<C-n>"],
+        "commands": [":nohl"]
+      },
+      {
+        "before": ["K"],
+        "commands": ["lineBreakInsert"],
+        "silent": true
+      }
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+      "<C-a>": false, // select all
+      "<C-f>": false, // find
+      "<C-s>": false, // save
+      "<C-p>": false, // fuzzy file search
+      "<C-c>": false, // copy
+      "<C-v>": false, // paste
+      "<C-j>": false // open terminal screen bottom
+      // Ctrl + k + 2 , Ctrl + k + j                // fold still works
+      // Ctrl + t still works                       // symbol search menu
+      // Ctrl + Shift + p still works               // vscode options menu
+      // Ctrl + Alt still works                     // multiline selection
+      // Ctrl + Shift + L still works               // all matches
+      // Ctrl + b still works                       // close sidebar
+    },
+  
+    "extensions.experimental.affinity": {
+      "vscodevim.vim": 1
+    }, 
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        }
+    ]
+}
