@@ -15,17 +15,39 @@
       "<C-c>": false, // copy
       "<C-v>": false, // paste
       "<C-j>": false // open terminal screen bottom
+
+      // NOTE it all works right now because vim Ctrl keys are disabled.
+      // which means vim resizing needs to be remapped
       // Ctrl + k + 2 , Ctrl + k + j                // fold still works
       // Ctrl + t still works                       // symbol search menu
       // Ctrl + Shift + p still works               // vscode options menu
       // Ctrl + Alt still works                     // multiline selection
       // Ctrl + Shift + L still works               // all matches
       // Ctrl + b still works                       // close sidebar
+      // Ctrl + \                                   // splits current page into new screen  
     },
   
     "extensions.experimental.affinity": {
       "vscodevim.vim": 1
     }, 
+    "vim.normalModeKeyBindings": [
+      // rebinding all window shaping functions to be leader key centric
+      { "before": ["<C-w>", "h"], "after": ["<leader>", "h"] },
+      { "before": ["<C-w>", "j"], "after": ["<leader>", "j"] },
+      { "before": ["<C-w>", "k"], "after": ["<leader>", "k"] },
+      { "before": ["<C-w>", "l"], "after": ["<leader>", "l"] },
+      { "before": ["<C-w>", "w"], "after": ["<leader>", "w"] },
+      { "before": ["<C-w>", "r"], "after": ["<leader>", "r"] },
+      { "before": ["<C-w>", "H"], "after": ["<leader>", "H"] },
+      { "before": ["<C-w>", "J"], "after": ["<leader>", "J"] },
+      { "before": ["<C-w>", "K"], "after": ["<leader>", "K"] },
+      { "before": ["<C-w>", "L"], "after": ["<leader>", "L"] },
+      { "before": ["<C-w>", "s"], "after": ["<leader>", "s"] },
+      { "before": ["<C-w>", "v"], "after": ["<leader>", "v"] },
+      { "before": ["<C-w>", "o"], "after": ["<leader>", "o"] },
+      { "before": ["<C-w>", "c"], "after": ["<leader>", "c"] },
+      { "before": ["<C-w>", "="], "after": ["<leader>", "="] }
+    ],
     "vim.normalModeKeyBindingsNonRecursive": [
       {
         "before": ["<leader>", "d"],
