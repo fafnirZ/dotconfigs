@@ -1,0 +1,18 @@
+## Commands I use
+
+`gd` - goto definition
+`ctrl+o` - undo a goto command?
+
+`shift+j|k` - 5 up|down
+
+`e` - end of word
+`w` - start of word
+`b` - go back 1 word (start)
+`ge` - back 1 word (end)
+
+
+`daw` - when inside a word delete the entire word
+`dw` - delete word starting from cursor
+`caw` - change a word when inside it
+`dawi` - delete a word then go into insert mode
+
