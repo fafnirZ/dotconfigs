@@ -9,11 +9,15 @@ saved_vscode_settings_config_location="./settings.json"
 save__current_to_saved() {
 	echo "saved current config at $vscode_settings_config_location"
 	echo "to $saved_vscode_settings_config_location"
+
+	cp $vscode_settings_config_location $saved_vscode_settings_config_location
 }
 
 replace__current_with_saved() {
 	echo "replacing current config at $vscode_settings_config_location"
 	echo "with $saved_vscode_settings_config_location"
+
+	cp $saved_vscode_settings_config_location $vscode_settings_config_location
 }
 
 
