@@ -30,11 +30,13 @@ gtcl() {
     fi
 }
 
-# diff tool
+#############
+# diff tool #
+#############
 cdiff() {
     # args file1 file2
-    f1=$1
-    f2=$2
+    local f1=$1
+    local f2=$2
     if [ $# -lt 2 ]; then
         echo "usage: cdiff <file1> <file2>"
         return
@@ -49,6 +51,16 @@ cdiff() {
         $2 \
         | less -r
 }
+
+# autocompletion for this command
+# has the _cd autocomplete
+# from bash-complete
+# check the function for _cd
+# by running `type _cd`
+complete -F _cd cdiff
+#########################
+# end diff tool section #
+#########################
 
 # aliases
 alias ll='ls -alF'
