@@ -1,10 +1,10 @@
 {
     "editor.tabSize": 4,
     // default
-    "vim.easymotion": true,
+    "vim.easymotion": false,
     "vim.incsearch": true,
     "vim.useSystemClipboard": true,
-    "vim.useCtrlKeys": false,
+    "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
     "vim.leader": "<space>",
     "vim.handleKeys": {
@@ -14,8 +14,15 @@
       "<C-p>": false, // fuzzy file search
       "<C-c>": false, // copy
       "<C-v>": false, // paste
-      "<C-j>": false // open terminal screen bottom
-
+      "<C-j>": false, // open terminal screen bottom
+      "<C-k>": false,
+      "<C-t>": false,
+      "<C-b>": false, // collapse sidebar
+      "<C-w>": false,
+      "<C-x>": false,
+      "<C-z>": false,
+      "<C-g>": false,
+      "<Shift-/>": false
       // NOTE it all works right now because vim Ctrl keys are disabled.
       // which means vim resizing needs to be remapped
       // Ctrl + k + 2 , Ctrl + k + j                // fold still works
@@ -24,7 +31,7 @@
       // Ctrl + Alt still works                     // multiline selection
       // Ctrl + Shift + L still works               // all matches
       // Ctrl + b still works                       // close sidebar
-      // Ctrl + \                                   // splits current page into new screen  
+      // Ctrl + \                                   // splits current page into new screen
     },
   
     "extensions.experimental.affinity": {
@@ -36,17 +43,8 @@
       { "before": ["<C-w>", "j"], "after": ["<leader>", "j"] },
       { "before": ["<C-w>", "k"], "after": ["<leader>", "k"] },
       { "before": ["<C-w>", "l"], "after": ["<leader>", "l"] },
-      { "before": ["<C-w>", "w"], "after": ["<leader>", "w"] },
-      { "before": ["<C-w>", "r"], "after": ["<leader>", "r"] },
-      { "before": ["<C-w>", "H"], "after": ["<leader>", "H"] },
-      { "before": ["<C-w>", "J"], "after": ["<leader>", "J"] },
-      { "before": ["<C-w>", "K"], "after": ["<leader>", "K"] },
-      { "before": ["<C-w>", "L"], "after": ["<leader>", "L"] },
-      { "before": ["<C-w>", "s"], "after": ["<leader>", "s"] },
-      { "before": ["<C-w>", "v"], "after": ["<leader>", "v"] },
-      { "before": ["<C-w>", "o"], "after": ["<leader>", "o"] },
-      { "before": ["<C-w>", "c"], "after": ["<leader>", "c"] },
-      { "before": ["<C-w>", "="], "after": ["<leader>", "="] }
+      { "before": ["J"], "after": ["5","j"] }, // jump down 5 lines
+      { "before": ["K"], "after": ["5","k"] }  // jump up 5 lines
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
       {
@@ -61,6 +59,18 @@
         "before": ["K"],
         "commands": ["lineBreakInsert"],
         "silent": true
+      },
+      {
+        "before": ["<leader>", "t", "t"],
+        "commands": [":tabnew"]
+      },
+      {
+        "before": ["<leader>", "t", "n"],
+        "commands": [":tabnext"]
+      },
+      {
+        "before": ["<leader>", "t", "p"],
+        "commands": [":tabprev"]
       }
     ],
     "vim.insertModeKeyBindings": [
