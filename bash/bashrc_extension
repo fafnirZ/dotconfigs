@@ -76,7 +76,10 @@ alias gpl='git pull'
 alias gpsh='git push'
 
 # neovim
-alias nv='nvim'
+nv() {
+    nvim
+}
+complete -F _cd nv
 
 # terraform
 alias tf='terraform'
