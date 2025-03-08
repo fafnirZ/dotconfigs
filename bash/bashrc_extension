@@ -30,6 +30,26 @@ gtcl() {
     fi
 }
 
+# diff tool
+cdiff() {
+    # args file1 file2
+    f1=$1
+    f2=$2
+    if [ $# -lt 2 ]; then
+        echo "usage: cdiff <file1> <file2>"
+        return
+    fi
+
+
+    diff \
+        --side-by-side \
+        --suppress-common-lines \
+        --color=always \
+        $1 \
+        $2 \
+        | less -r
+}
+
 # aliases
 alias ll='ls -alF'
 alias la='ls -A'
