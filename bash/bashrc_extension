@@ -1,7 +1,51 @@
 
+synctime() {
+	sudo hwclock -s
+}
+
+gtcl() {
+    if [ $# -lt 1 ]; then
+        echo "Usage: gtcl <repo>"
+        echo "options: -u|--user <user>"
+        return 1
+    fi
+    while [[ $# -gt 1 ]]
+    do
+        case $1 in
+            -u|--user)
+            user=$2
+            shift
+            shift
+            ;;
+            *)
+            shift
+            ;;
+        esac
+    done
+    if [ $user ]; then
+        remote=$(echo $1 | sed "s/github\.com/github.com-$user/")
+        git clone $remote
+    else
+        git clone $1
+    fi
+}
+
 # aliases
 alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF' 
 
+# git utilities
 alias gs='git status'
 alias gb='git branch'
 alias gl='git log'
+alias gck='git checkout'
+alias gpl='git pull'
+alias gpsh='git push'
+
+# neovim
+alias nv='nvim'
+
+# terraform
+alias tf='terraform'
+alias ansp='ansible-playbook'
