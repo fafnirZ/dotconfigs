@@ -1,7 +1,18 @@
-{
+{    
+    "workbench.colorTheme": "GitHub Dark",
+    "window.zoomLevel": 1,
+    "jupyter.askForKernelRestart": false,
+    "git.confirmSync": false,
+    "python.experiments.optInto": [],
+    "jupyter.enableExtendedPythonKernelCompletions": true,
+    "notebook.editorOptionsCustomizations": {
+        "editor.tabSize": 4,
+        "editor.indentSize": 4,
+        "editor.insertSpaces": true
+    },
     "editor.tabSize": 4,
     // default
-    "vim.easymotion": false,
+    "vim.easymotion": true,
     "vim.incsearch": true,
     "vim.useSystemClipboard": true,
     "vim.useCtrlKeys": true,
@@ -33,16 +44,10 @@
       // Ctrl + b still works                       // close sidebar
       // Ctrl + \                                   // splits current page into new screen
     },
-  
     "extensions.experimental.affinity": {
       "vscodevim.vim": 1
     }, 
     "vim.normalModeKeyBindings": [
-      // rebinding all window shaping functions to be leader key centric
-      { "before": ["<C-w>", "h"], "after": ["<leader>", "h"] },
-      { "before": ["<C-w>", "j"], "after": ["<leader>", "j"] },
-      { "before": ["<C-w>", "k"], "after": ["<leader>", "k"] },
-      { "before": ["<C-w>", "l"], "after": ["<leader>", "l"] },
       { "before": ["J"], "after": ["5","j"] }, // jump down 5 lines
       { "before": ["K"], "after": ["5","k"] }  // jump up 5 lines
     ],
@@ -54,11 +59,6 @@
       {
         "before": ["<C-n>"],
         "commands": [":nohl"]
-      },
-      {
-        "before": ["K"],
-        "commands": ["lineBreakInsert"],
-        "silent": true
       },
       {
         "before": ["<leader>", "t", "t"],
