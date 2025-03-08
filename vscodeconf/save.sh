@@ -1,9 +1,17 @@
 #!/bin/bash
 
-# Hardcoded locations
+# getting user's C drive username
+echo "please provide your windows C:// drive username"
+read c_drive_user
 
-vscode_settings_config_location="$HOME/.vscode-server/data/Machine/settings.json"
+# Hardcoded locations
+vscode_settings_config_location="/mnt/c/Users/$c_drive_user/AppData/Roaming/Code/User/settings.json"
 saved_vscode_settings_config_location="./settings.json"
+
+if [ ! -f $vscode_settings_config_location ];then
+	echo "Vscode Settings config cannot be located at $vscode_settings_config_location"
+	exit 1
+fi
 
 
 save__current_to_saved() {
