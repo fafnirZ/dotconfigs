@@ -48,6 +48,10 @@
       "vscodevim.vim": 1
     }, 
     "vim.normalModeKeyBindings": [
+      { "before": ["<leader>", "h"], "after": ["<C-w>", "h"]}, // window left 
+      { "before": ["<leader>", "j"], "after": ["<C-w>", "j"]}, // window down 
+      { "before": ["<leader>", "k"], "after": ["<C-w>", "k"]}, // window up 
+      { "before": ["<leader>", "l"], "after": ["<C-w>", "l"]}, // window right 
       { "before": ["J"], "after": ["5","j"] }, // jump down 5 lines
       { "before": ["K"], "after": ["5","k"] }  // jump up 5 lines
     ],
