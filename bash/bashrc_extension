@@ -30,6 +30,13 @@ gtcl() {
     fi
 }
 
+
+winpath_to_linuxpath() {
+        arg=$1
+        result=$(echo $arg| sed 's/\\/\//g' | sed 's|C:|/mnt/c|')                                                               
+        echo $result
+}
+
 #############
 # diff tool #
 #############
