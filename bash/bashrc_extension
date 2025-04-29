@@ -37,6 +37,11 @@ winpath_to_linuxpath() {
         echo $result
 }
 
+# fuzzy git branch
+fzgb() {
+	git branch | fzf | xargs git checkout
+}
+
 #############
 # diff tool #
 #############
