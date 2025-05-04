@@ -26,7 +26,8 @@
 - `10gg` - go line 10
 - `:s/word/replace/g` - search for `word` replace with `replace` for all occurrences in line
 - `:noh` - remove search highlights
-- `:vsp` - vsplit current page 
+- `:vsp` - vsplit current page
+- `@:` - run previous command (e.g. replace)
 
 #### macro
 - `qa` - record macro for register `a`
