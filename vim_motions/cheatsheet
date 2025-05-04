@@ -8,8 +8,6 @@
 `shift+v` - select line
 `shift+``<` or `>` - in visual mode, indent/unindent
 
-`shift+j|k` - 5 up|down
-
 `e` - end of word
 `w` - start of word
 `b` - go back 1 word (start)
@@ -28,13 +26,18 @@
 `10gg` - go line 10
 `:s/word/replace/g` - search for `word` replace with `replace` for all occurrences in line
 `:noh` - remove search highlights
-
+`:vsp` - vsplit current page 
 
 macro
 `qa` - record macro for register `a`
 `q`  - when in record mode type q to end recording
 `@a` - play macro at register a
 `@@` - play last macro
+
+### Non vanilla vim commands
+leader = space
+`<leader> + hjkl` - change focused window 
+`shift+j|k` - 5 up|down
 
 
 ### Vscode commands
@@ -45,3 +48,10 @@ macro
 `ctrl(hold)+k+j` - undo all collapse
 `ctrl+t` - find symbol
 `ctrl+p` - open file
+`ctrl+j` - open terminal
+`ctrl+a` - select all
+`ctrl+w` - delete tab
+`ctrl+g` - go to line
+`ctrl+b` - collapse sidebar
+`ctrl+f` - find
+`ctrl+\` - split current page into new screen
