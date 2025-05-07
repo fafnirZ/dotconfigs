@@ -28,6 +28,8 @@
 - `:noh` - remove search highlights
 - `:vsp` - vsplit current page
 - `@:` - run previous command (e.g. replace)
+- `"0p` - paste from register 0
+   - `yaw` then `caw` then `"0p` to yank and replace, since theres frustration around the buffers
 
 #### macro
 - `qa` - record macro for register `a`
