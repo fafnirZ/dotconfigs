@@ -29,7 +29,9 @@
 - `:vsp` - vsplit current page
 - `@:` - run previous command (e.g. replace)
 - `"0p` - paste from register 0
-   - `yaw` then `daw` (not `caw` because it puts you in insertmode) then `"0p` to yank and replace, since theres frustration around the buffers
+- `"0P` - to paste from register 0 before the cursor
+   - `yaw`>`daw`>`"0p` chain to yank and replace
+   - `yaw` then `daw` (not `caw` because it puts you in insertmode) then `"0P` to yank and replace, since theres frustration around the buffers
 
 #### macro
 - `qa` - record macro for register `a`
