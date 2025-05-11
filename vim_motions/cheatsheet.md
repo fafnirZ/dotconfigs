@@ -28,6 +28,7 @@
 - `:noh` - remove search highlights
 - `:vsp` - vsplit current page
 - `@:` - run previous command (e.g. replace)
+- `.` - run previous action 
 - `"0p` - paste from register 0
 - `"0P` - to paste from register 0 before the cursor
    - `yaw`>`daw`>`"0p` chain to yank and replace
