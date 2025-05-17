@@ -42,6 +42,10 @@ fzgb() {
 	git branch | fzf | xargs git checkout
 }
 
+cde() { 
+	cd $(de $@); 
+}
+
 #############
 # diff tool #
 #############
