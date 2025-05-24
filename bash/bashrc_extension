@@ -42,6 +42,13 @@ fzgb() {
 	git branch | fzf | xargs git checkout
 }
 
+# fuzzy previous command hsitory
+fzcmd() {
+	cat ~/.bash_history | fzf
+}
+
+
+# dora-explorer
 cde() { 
 	cd $(de $@); 
 }
