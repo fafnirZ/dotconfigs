@@ -107,3 +107,13 @@ complete -F _cd nv
 # terraform
 alias tf='terraform'
 alias ansp='ansible-playbook'
+
+
+# copy to clipboard
+clip() {
+	if [[ $XDG_SESSION_TYPE ]]; then
+		wl-copy $@
+	else
+		xclip -selection clipboard
+	fi
+}
