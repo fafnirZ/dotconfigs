@@ -13,12 +13,19 @@ kde() {
 # > hyprland 
 
 wallpaper() {
-	WALLPAPER_DIR="$HOME/wallpapers/"
-	CURRENT_WALL=$(hyprctl hyprpaper listloaded)
 
-	# Get a random wallpaper that is not the current one
-	WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
+	WALLPAPER_DIR="$HOME/wallpapers/"
+	CURRENT_WALL=""
+	if [[ $# -lt 1 ]]; then 
+		CURRENT_WALL=$(hyprctl hyprpaper listloaded)
+
+		# Get a random wallpaper that is not the current one
+		WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
+		echo "loading $WALLPAPER"
+	else
+		CURRENT_WALL="$WALLPAPER_DIR/$1"
+	fi
 
 	# Apply the selected wallpaper
-	hyprctl hyprpaper reload ,"$WALLPAPER"	
+	hyprctl hyprpaper reload eDP-1,"$WALLPAPER"	
 }
