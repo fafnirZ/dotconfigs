@@ -1,3 +1,10 @@
-wayland() {
+echo ".bashrc_arch loaded"
+
+# comment this if you dont want fastfetch(neofetch) printed
+fastfetch
+
+# call this for kde display
+kde() {
+	# runs using wayland
 	XDG_SESSION_TYPE=wayland dbus-run-session startplasma-wayland
 }
