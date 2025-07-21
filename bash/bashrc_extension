@@ -112,7 +112,7 @@ alias ansp='ansible-playbook'
 # copy to clipboard
 clip() {
 	if [[ $XDG_SESSION_TYPE ]]; then
-		wl-copy $@
+		wl-copy -n $@
 	else
 		xclip -selection clipboard
 	fi
