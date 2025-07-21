@@ -1,0 +1,7 @@
+set number
+set mouse=a
+
+
+"shift+j = 5j
+nnoremap J 5j
+nnoremap K 5k
