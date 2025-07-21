@@ -8,3 +8,6 @@ kde() {
 	# runs using wayland
 	XDG_SESSION_TYPE=wayland dbus-run-session startplasma-wayland
 }
+
+#  can run hyprland instead of kde for hyprland display
+# > hyprland 
