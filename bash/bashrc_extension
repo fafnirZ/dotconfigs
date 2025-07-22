@@ -1,4 +1,7 @@
 echo ".bashrc_extension loaded"
+reload() {
+	source ~/.bashrc
+}
 synctime() {
 	sudo hwclock -s
 }
