@@ -24,5 +24,13 @@ https://github.com/Alexays/Waybar/wiki/Module:-Hyprland
 yay waybar-git
 ```
 
+## fonts for icons
+nerd fonts
+https://github.com/ryanoasis/nerd-fonts
+https://aur.archlinux.org/packages/nerd-fonts-noto-sans-mono
+```
+yay nerd-fonts-noto-sans-mono
+```
+
 ## ref
 https://itsfoss.com/configuring-hyprland/
