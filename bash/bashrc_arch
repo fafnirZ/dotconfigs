@@ -36,3 +36,16 @@ wallpaper() {
 	fi
 
 }
+
+wifi_show() {
+	iwctl station wlan0 show
+}
+
+dhcp() {
+	dhclient
+}
+
+mixer() {
+	pavucontrol
+}
+
