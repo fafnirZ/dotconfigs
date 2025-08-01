@@ -32,5 +32,10 @@ https://aur.archlinux.org/packages/nerd-fonts-noto-sans-mono
 yay nerd-fonts-noto-sans-mono
 ```
 
+
+## chrome
+https://aur.archlinux.org/packages/google-chrome
+
+
 ## ref
 https://itsfoss.com/configuring-hyprland/
