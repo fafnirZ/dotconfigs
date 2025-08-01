@@ -23,6 +23,7 @@ wallpaper() {
 		echo "loading $WALLPAPER"
 		# Apply the selected wallpaper
 		hyprctl hyprpaper reload eDP-1,"$WALLPAPER"	
+		hyprctl hyprpaper reload HDMI-A-1,"$WALLPAPER"	
 		return
 	else
 		WALLPAPER_DIR="$HOME/wallpapers"
@@ -31,6 +32,7 @@ wallpaper() {
 		echo "loading $WALLPAPER"
 		# Apply the selected wallpaper
 		hyprctl hyprpaper reload eDP-1,"$WALLPAPER"	
+		hyprctl hyprpaper reload HDMI-A-1, "$WALLPAPER"
 	fi
 
 }
