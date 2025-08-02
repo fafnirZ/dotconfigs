@@ -29,6 +29,7 @@ nerd fonts
 https://github.com/ryanoasis/nerd-fonts
 https://aur.archlinux.org/packages/nerd-fonts-noto-sans-mono
 ```
+yay nerd-fonts-complete-mono-glyphs
 yay nerd-fonts-noto-sans-mono
 ```
 

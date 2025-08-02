@@ -31,36 +31,36 @@
     "*":[1,2,3,4,5,6,7,8,9]
     },
     "format-icons": {
-      "1": "󰣇",
-      "2": "󰈹",
-      "3": "󰇮",
-      "4": "",
-      "5": "",
-      "6": "",
-      "7": "",
-      "8": "",
-      "9": "󰖳",
+      // "1": "󰣇",
+      // "2": "󰈹",
+      // "3": "󰇮",
+      // "4": "",
+      // "5": "",
+      // "6": "",
+      // "7": "",
+      // "8": "",
+      // "9": "󰖳",
       "default": ""
     }
   },
   "custom/lock": {
-  "format": "<span color='#00FFFF'>  </span>",
-  "on-click": "hyprlock",
-  "tooltip": true,
-  "tooltip-format": "锁屏"
-  },
-  "custom/reboot": {
-    "format": "<span color='#FFD700'>  </span>",
-    "on-click": "systemctl reboot",
+    "format": "<span color='#00FFFF'>  </span>",
+    "on-click": "hyprlock",
     "tooltip": true,
-    "tooltip-format": "重启"
+    "tooltip-format": "锁屏"
   },
-  "custom/power": {
-    "format": "<span color='#FF4040'>  </span>",
-    "on-click": "systemctl poweroff",
-    "tooltip": true,
-    "tooltip-format": "关机"
-  },
+//  "custom/reboot": {
+//    "format": "<span color='#FFD700'>  </span>",
+//    "on-click": "systemctl reboot",
+//    "tooltip": true,
+//    "tooltip-format": "重启"
+//  },
+//  "custom/power": {
+//    "format": "<span color='#FF4040'>  </span>",
+//    "on-click": "systemctl poweroff",
+//    "tooltip": true,
+//    "tooltip-format": "关机"
+//  },
   "network": {
     "format-wifi": "<span color='#00FFFF'> 󰤨 </span>{essid} ",
     "format-ethernet": "<span color='#7FFF00'> </span>Wired ",
