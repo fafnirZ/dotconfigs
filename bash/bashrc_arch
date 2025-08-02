@@ -13,27 +13,26 @@ kde() {
 # > hyprland 
 
 wallpaper() {
-	echo $#
 	if [[ $# -lt 1 ]]; then 
 		WALLPAPER_DIR="$HOME/wallpapers"
 		CURRENT_WALL=$(hyprctl hyprpaper listloaded)
 		# Get a random wallpaper that is not the current one
 		WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
+		echo "[*] loading $WALLPAPER"
 
-		echo "loading $WALLPAPER"
 		# Apply the selected wallpaper
-		hyprctl hyprpaper reload eDP-1,"$WALLPAPER"	
-		hyprctl hyprpaper reload HDMI-A-1,"$WALLPAPER"	
-		return
+		hyprctl hyprpaper reload eDP-1,"$WALLPAPER" > /dev/null
+		hyprctl hyprpaper reload HDMI-A-1,"$WALLPAPER" > /dev/null	
 	else
 		WALLPAPER_DIR="$HOME/wallpapers"
 		WALLPAPER="$WALLPAPER_DIR/$1"
 
-		echo "loading $WALLPAPER"
+		echo "[*] loading $WALLPAPER"
 		# Apply the selected wallpaper
-		hyprctl hyprpaper reload eDP-1,"$WALLPAPER"	
-		hyprctl hyprpaper reload HDMI-A-1, "$WALLPAPER"
+		hyprctl hyprpaper reload eDP-1,"$WALLPAPER" > /dev/null
+		hyprctl hyprpaper reload HDMI-A-1, "$WALLPAPER" > /dev/null
 	fi
+	echo "[*] loaded $WALLPAPER"
 
 }
 
