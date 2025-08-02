@@ -5,6 +5,7 @@ iwctl
 alsa-utils
 pulse-audio
 pavucontrol
+pulseaudio-bluetooth
 
 # bluetooth drivers
 https://wiki.archlinux.org/title/Bluetooth
