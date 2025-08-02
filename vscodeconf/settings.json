@@ -1,6 +1,5 @@
 {    
     "workbench.colorTheme": "GitHub Dark",
-    "disable-hardware-acceleration": true, // uncomment for hyprland
     "window.zoomLevel": 1,
     "jupyter.askForKernelRestart": false,
     "git.confirmSync": false,
