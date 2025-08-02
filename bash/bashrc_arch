@@ -48,3 +48,6 @@ mixer() {
 	pavucontrol
 }
 
+bluetooth() {
+	blueman-manager
+}
