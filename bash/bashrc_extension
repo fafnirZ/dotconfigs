@@ -53,7 +53,7 @@ fzcmd() {
 
 # dora-explorer
 cde() { 
-	DORA_NOSELECT_FILE=1 cd $(de $@); 
+	cd $(DORA_NOSELECT_FILE=1 de $@); 
 }
 
 #############
