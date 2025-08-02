@@ -11,3 +11,6 @@ windows+b -> browser
 hyprctl
 hyprland
 
+
+# waybar
+https://github.com/Alexays/Waybar/wiki/Module:-Hyprland#persistent-workspaces
