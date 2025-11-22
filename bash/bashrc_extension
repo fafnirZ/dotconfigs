@@ -154,5 +154,5 @@ jqp() {
         --preview "$cmd_ | jq {q}" \
         --preview-window up,1,100 \
         --bind 'enter:'\
-        --bind "ctrl-y:execute($_load_clip && echo {q} | clip)"
+        --bind "ctrl-y:execute($_load_clip && echo {q} | tr -d '\n' | clip)"
 }
