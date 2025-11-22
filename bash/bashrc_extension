@@ -115,16 +115,6 @@ complete -F _cd nv
 alias tf='terraform'
 alias ansp='ansible-playbook'
 
-
-# copy to clipboard
-# clip() {
-# 	if [[ $XDG_SESSION_TYPE ]]; then
-# 		wl-copy -n $@
-# 	else
-# 		xclip -selection clipboard
-# 	fi
-# }
-
 clip() {
     os_name=$(uname -o)
     if [[ $os_name == 'Darwin' ]]; then 
@@ -142,9 +132,6 @@ clip() {
         echo "not sure what you're running"
     fi
 }
-# export to allow subshells
-# to access it
-export -f clip > /dev/null 2>&1 
 
 #########################################
 # dynamically preview a file's contents
@@ -152,14 +139,20 @@ export -f clip > /dev/null 2>&1
 #########################################
 
 jqp() {
+    # fzf spawns a non-login shell 
+    # .bashrc is only sourced in a new interactive, non-login shell is started
+    # which is why the custom `clip` command will not be found
+    # which is why I store the clip_function's source code inside the variable
+    # _load_clip then I run the code in the subshell such that it initialises the function
+    # then afterwards I'm able to access the function within the subshell.
+    _load_clip=$(which clip)
+
     file_path=$1
     cmd_="cat $file_path"
-    clip_command_="bash -c 'clip {}'"
     echo '' |
         fzf \
         --preview "$cmd_ | jq {q}" \
         --preview-window up,1,100 \
         --bind 'enter:'\
-        --bind "ctrl-l:execute(which clip)"\
-        --bind "ctrl-y:execute(echo {q} | $clip_command_)"
+        --bind "ctrl-y:execute($_load_clip && echo {q} | clip)"
 }
