@@ -137,6 +137,7 @@ clip() {
         else
             # normal linux
             xclip -selection clipboard
+        fi
     else
         echo "not sure what you're running"
     fi
