@@ -124,3 +124,14 @@ clip() {
 		xclip -selection clipboard
 	fi
 }
+
+#########################################
+# dynamically preview a file's contents
+# using jq
+#########################################
+
+jqp() {
+    file_path=$1
+    cmd_="cat $file_path"
+
+}
