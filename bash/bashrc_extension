@@ -133,5 +133,10 @@ clip() {
 jqp() {
     file_path=$1
     cmd_="cat $file_path"
-
+    echo '' |
+        fzf \
+        --preview "$cmd_ | jq {q}" \
+        --preview-window up,1,100 \
+        --bind 'enter:'\
+        --bind 'ctrl-y:execute(echo {q} | clip.exe)'
 }
