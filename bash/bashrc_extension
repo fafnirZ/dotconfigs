@@ -45,11 +45,15 @@ fzgb() {
 	git branch | fzf | xargs git checkout
 }
 
-# fuzzy previous command hsitory
+# fuzzy previous command history
 fzcmd() {
 	cat ~/.bash_history | fzf
 }
 
+# fuzzy copy contents of files searched recursively of current dir
+fzcp() {
+    fzf | xargs cat | clip.exe
+}
 
 # dora-explorer
 cde() { 
