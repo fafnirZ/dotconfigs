@@ -156,5 +156,5 @@ jqp() {
         --preview "$cmd_ | jq {q}" \
         --preview-window up,1,100 \
         --bind 'enter:'\
-        --bind 'ctrl-y:execute(echo {q} | clip.exe)'
+        --bind 'ctrl-y:execute(echo {q} | clip)'
 }
