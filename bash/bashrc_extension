@@ -117,12 +117,29 @@ alias ansp='ansible-playbook'
 
 
 # copy to clipboard
+# clip() {
+# 	if [[ $XDG_SESSION_TYPE ]]; then
+# 		wl-copy -n $@
+# 	else
+# 		xclip -selection clipboard
+# 	fi
+# }
+
 clip() {
-	if [[ $XDG_SESSION_TYPE ]]; then
-		wl-copy -n $@
-	else
-		xclip -selection clipboard
-	fi
+    os_name=$(uname -o)
+    if [[ $os_name == 'Darwin' ]]; then 
+        pbcopy
+    elif [[ $os_name == "GNU/Linux" ]]; then
+        # detect wsl
+        contains_microsoft=$(uname -r | grep -qi 'microsoft' && echo 'True' || echo 'False')
+        if [[ $contains_microsoft == 'True' ]]; then
+            clip.exe
+        else
+            # normal linux
+            xclip -selection clipboard
+    else
+        echo "not sure what you're running"
+    fi
 }
 
 #########################################
