@@ -55,6 +55,11 @@ fzcp() {
     fzf | xargs cat | clip.exe
 }
 
+# fuzzy finds processes and kills the process
+fzkill() {
+    ps -eo user,pid,command | fzf | awk '{print $2}' | xargs kill -9
+}
+
 # dora-explorer
 cde() { 
 	cd $(DORA_NOSELECT_FILE=1 de $@); 
@@ -155,4 +160,9 @@ jqp() {
         --preview-window up,1,100 \
         --bind 'enter:'\
         --bind "ctrl-y:execute($_load_clip && echo {q} | tr -d '\n' | clip)"
+}
+
+branches() {
+    find . -maxdepth 3 -type d -name '.git' \
+        -exec sh -c 'cd "$0" && echo -n "$0: " && git branch --show-current' {} \;
 }
