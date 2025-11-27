@@ -163,6 +163,8 @@ jqp() {
 }
 
 branches() {
+    # git branch --show-current is only available on later versions of git
+    # git rev-parse --abbrev-ref HEAD works for all versions 
     find . -maxdepth 3 -type d -name '.git' \
-        -exec sh -c 'cd "$0" && echo -n "$0: " && git branch --show-current' {} \;
+        -exec sh -c 'cd "$0" && echo -n "$0: " && git rev-parse --abbrev-ref HEAD' {} \;
 }
