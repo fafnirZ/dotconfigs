@@ -109,6 +109,7 @@ alias gl='git log'
 alias gck='git checkout'
 alias gpl='git pull'
 alias gpsh='git push'
+alias gll='git log --oneline'
 
 # neovim
 nv() {
@@ -167,4 +168,12 @@ branches() {
     # git rev-parse --abbrev-ref HEAD works for all versions 
     find . -maxdepth 3 -type d -name '.git' \
         -exec sh -c 'cd "$0" && echo -n "$0: " && git rev-parse --abbrev-ref HEAD' {} \;
+}
+
+lsmd5() {
+	find . -type f -exec md5sum {} \;
+}
+
+printline() {
+	awk '{print NR, $0}'
 }
