@@ -110,6 +110,7 @@ alias gck='git checkout'
 alias gpl='git pull'
 alias gpsh='git push'
 alias gll='git log --oneline'
+alias gwt='git worktree'
 
 # neovim
 nv() {
