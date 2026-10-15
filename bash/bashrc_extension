@@ -215,3 +215,26 @@ EOF
     echo "Copied '$secret' from '$project' to clipboard"
   fi
 }
+
+
+gcloud_daily_login() {
+    # Prompt to log in to gcloud, at most once per day
+    local GCLOUD_STAMP
+
+    GCLOUD_STAMP="$HOME/.gcloud_last_login"
+    if [[ $- == *i* ]] && [ "$(cat "$GCLOUD_STAMP" 2>/dev/null)" != "$(date +%F)" ]; then
+    if gcloud auth print-access-token >/dev/null 2>&1; then
+        # Already authenticated; no need to ask today
+        date +%F > "$GCLOUD_STAMP"
+    else
+        printf "log in to gcloud cli? [y/n/m] "
+        read -r reply
+        case "$reply" in
+        [yY]) gcloud auth login && date +%F > "$GCLOUD_STAMP" ;;
+        [mM]) date +%F > "$GCLOUD_STAMP"
+                echo "OK, won't ask again today." ;;
+        *)    ;;  # n or anything else: skip, ask again next time a terminal spins up
+        esac
+    fi
+    fi
+}
