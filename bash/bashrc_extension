@@ -226,6 +226,7 @@ gcloud_daily_login() {
         return
     fi
 
+    # $- == *i* checks if the shell is interactive, prevents it from hanging during non-interactive session like scripts
     if [[ $- == *i* ]] && [ "$(cat "$GCLOUD_STAMP" 2>/dev/null)" != "$(date +%F)" ]; then
         if gcloud auth print-access-token >/dev/null 2>&1; then
             # Already authenticated; no need to ask today
