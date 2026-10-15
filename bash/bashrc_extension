@@ -216,6 +216,16 @@ EOF
   fi
 }
 
+gssh() {
+    local project
+    project=$(gproj) || return
+    selected_instance=$(gcloud compute instances list \
+        --project="$project" \
+        --format="value(name)" \
+        --filter="status:RUNNING" \
+            | fzf --prompt="Instance>") || return
+    gcloud compute ssh --project="$project" "$selected_instance"
+}
 
 gcloud_daily_login() {
     # Prompt to log in to gcloud, at most once per day
