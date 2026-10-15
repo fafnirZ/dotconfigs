@@ -170,10 +170,47 @@ branches() {
         -exec sh -c 'cd "$0" && echo -n "$0: " && git rev-parse --abbrev-ref HEAD' {} \;
 }
 
+
+printline() {
+    awk '{print NR, $0}'
+}
+
 lsmd5() {
 	find . -type f -exec md5sum {} \;
 }
 
-printline() {
-	awk '{print NR, $0}'
+
+# Select a GCP project interactively and copy a decoded secret to clipboard
+gproj() {
+  local cache=~/.cache/gcloud-projects
+  # refresh cache if older than a day
+  if [[ ! -f $cache || $(find "$cache" -mtime +1) ]]; then
+    gcloud projects list --filter="lifecycleState:ACTIVE AND NOT projectId:sys-*" \
+        --format="value(projectId)" > "$cache"
+  fi
+  fzf --prompt="Project> " < "$cache"
+}
+gsecret() {
+  local project secret
+
+  project=$(gproj) || return
+  secret=$(gcloud secrets list --project="$project" --format="value(name)" | fzf --prompt="Secret> ") || return   
+  copy_or_print=$(fzf --prompt="Project> " <<EOF
+print
+copy_to_clipboard
+EOF
+) || return
+
+  if [ $copy_or_print = "print" ]; then
+      gcloud secrets versions access latest \
+        --secret="$secret" \
+        --project="$project" \
+        --format='get(payload.data)' | tr '_-' '/+' | base64 -d
+  else
+      gcloud secrets versions access latest \
+        --secret="$secret" \
+        --project="$project" \
+        --format='get(payload.data)' | tr '_-' '/+' | base64 -d | clip.exe
+    echo "Copied '$secret' from '$project' to clipboard"
+  fi
 }

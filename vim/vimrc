@@ -3,6 +3,12 @@ syntax on
 set number
 set mouse=a
 
+set tabstop=4       " Display tabs as 4 spaces
+set shiftwidth=4    " Use 4 spaces for auto-indentation
+set expandtab       " Insert spaces instead of tab characters
+set autoindent      " Copy indent from current line when starting a new line
+
+
 
 "shift+j = 5j
 nnoremap J 5j
