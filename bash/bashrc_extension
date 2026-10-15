@@ -251,7 +251,7 @@ agent() {
     trap 'ssh-agent -k' EXIT
 
     # select the ssh key to add to the agent
-    keys=$(ls ~/.ssh)
+    keys=$(ls ~/.ssh | grep '_rsa$\|_ed25519$\|^id_')
     if [ -z "$keys" ]; then
         echo "No SSH keys found in ~/.ssh"
         return
