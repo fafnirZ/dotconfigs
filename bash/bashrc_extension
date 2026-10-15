@@ -243,3 +243,22 @@ gcloud_daily_login() {
         fi
     fi
 }
+
+agent() {
+    eval "$(ssh-agent -s)"
+    # sets up cleanup when shell exists, killing the ssh-agent
+    # without this every terminal would leave an orphaned running ssh-agent process
+    trap 'ssh-agent -k' EXIT
+
+    # select the ssh key to add to the agent
+    keys=$(ls ~/.ssh)
+    if [ -z "$keys" ]; then
+        echo "No SSH keys found in ~/.ssh"
+        return
+    fi
+    
+    selected_key=$(printf "%s\n" "$keys" | fzf --prompt="Select SSH key> ") || return
+    if [ -n "$selected_key" ]; then
+        ssh-add "~/.ssh/$selected_key"
+    fi
+}
