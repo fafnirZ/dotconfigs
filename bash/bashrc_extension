@@ -228,14 +228,21 @@ gcloud_daily_login() {
 
     # $- == *i* checks if the shell is interactive, prevents it from hanging during non-interactive session like scripts
     if [[ $- == *i* ]] && [ "$(cat "$GCLOUD_STAMP" 2>/dev/null)" != "$(date +%F)" ]; then
-        if gcloud auth print-access-token >/dev/null 2>&1; then
+        # timeout so a slow network / hung gcloud can't block shell startup
+        if timeout 5 gcloud auth print-access-token >/dev/null 2>&1; then
             # Already authenticated; no need to ask today
             date +%F > "$GCLOUD_STAMP"
         else
-            printf "log in to gcloud cli? [y/n/m] "
-            read -r reply
+            local reply=""
+            printf "log in to gcloud cli? [y/n/m] (5s) "
+            # -t 5: give up after 5s with no answer and carry on as "n"
+            if ! read -r -t 5 reply; then
+                echo
+                return
+            fi
             case "$reply" in
-            [yY]) gcloud auth login && date +%F > "$GCLOUD_STAMP" ;;
+            # Ctrl+C or 60s without finishing the browser flow returns you to the shell
+            [yY]) timeout 60 gcloud auth login && date +%F > "$GCLOUD_STAMP" ;;
             [mM]) date +%F > "$GCLOUD_STAMP"
                     echo "OK, won't ask again today." ;;
             *)    ;;  # n or anything else: skip, ask again next time a terminal spins up
