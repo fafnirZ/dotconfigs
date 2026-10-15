@@ -222,19 +222,23 @@ gcloud_daily_login() {
     local GCLOUD_STAMP
 
     GCLOUD_STAMP="$HOME/.gcloud_last_login"
-    if [[ $- == *i* ]] && [ "$(cat "$GCLOUD_STAMP" 2>/dev/null)" != "$(date +%F)" ]; then
-    if gcloud auth print-access-token >/dev/null 2>&1; then
-        # Already authenticated; no need to ask today
-        date +%F > "$GCLOUD_STAMP"
-    else
-        printf "log in to gcloud cli? [y/n/m] "
-        read -r reply
-        case "$reply" in
-        [yY]) gcloud auth login && date +%F > "$GCLOUD_STAMP" ;;
-        [mM]) date +%F > "$GCLOUD_STAMP"
-                echo "OK, won't ask again today." ;;
-        *)    ;;  # n or anything else: skip, ask again next time a terminal spins up
-        esac
+    if ! command -v gcloud >/dev/null 2>&1; then
+        return
     fi
+
+    if [[ $- == *i* ]] && [ "$(cat "$GCLOUD_STAMP" 2>/dev/null)" != "$(date +%F)" ]; then
+        if gcloud auth print-access-token >/dev/null 2>&1; then
+            # Already authenticated; no need to ask today
+            date +%F > "$GCLOUD_STAMP"
+        else
+            printf "log in to gcloud cli? [y/n/m] "
+            read -r reply
+            case "$reply" in
+            [yY]) gcloud auth login && date +%F > "$GCLOUD_STAMP" ;;
+            [mM]) date +%F > "$GCLOUD_STAMP"
+                    echo "OK, won't ask again today." ;;
+            *)    ;;  # n or anything else: skip, ask again next time a terminal spins up
+            esac
+        fi
     fi
 }
