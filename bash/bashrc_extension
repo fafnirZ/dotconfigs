@@ -276,6 +276,6 @@ agent() {
     
     selected_key=$(printf "%s\n" "$keys" | fzf --prompt="Select SSH key> ") || return
     if [ -n "$selected_key" ]; then
-        ssh-add "~/.ssh/$selected_key"
+        ssh-add "$HOME/.ssh/$selected_key"
     fi
 }
