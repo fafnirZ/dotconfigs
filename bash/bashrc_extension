@@ -115,7 +115,7 @@ alias gac='git_ai_commit'
 git_ai_commit() {
     set -euo pipefail
 
-    git diff --cached --quiet && { echo "Nothing staged."; exit 1; }
+    git diff --cached --quiet && { echo "Nothing staged."; return; }
 
     MSG=$(git diff --cached | claude -p "Write a git commit message for this staged diff. \
     Conventional-commit subject (type(scope): summary, max 72 chars, imperative). \
