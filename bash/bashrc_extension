@@ -111,6 +111,19 @@ alias gpl='git pull'
 alias gpsh='git push'
 alias gll='git log --oneline'
 alias gwt='git worktree'
+alias gac='git_ai_commit'
+git_ai_commit() {
+    set -euo pipefail
+
+    git diff --cached --quiet && { echo "Nothing staged."; exit 1; }
+
+    MSG=$(git diff --cached | claude -p "Write a git commit message for this staged diff. \
+    Conventional-commit subject (type(scope): summary, max 72 chars, imperative). \
+    If non-trivial, add a blank line and a few short bullet points. \
+    Output ONLY the commit message, no preamble, no code fences.")
+
+    git commit ${1:+-e} -m "$MSG"
+}
 
 # neovim
 nv() {
