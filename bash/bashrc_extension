@@ -120,6 +120,7 @@ git_ai_commit() {
     MSG=$(git diff --cached | claude -p "Write a git commit message for this staged diff. \
     Conventional-commit subject (type(scope): summary, max 72 chars, imperative). \
     If non-trivial, add a blank line and a few short bullet points. \
+    Do NOT include any Co-Authored-By, Signed-off-by, or 'Generated with' lines. \
     Output ONLY the commit message, no preamble, no code fences.")
 
     git commit ${1:+-e} -m "$MSG"
