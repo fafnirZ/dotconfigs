@@ -124,6 +124,36 @@ git_ai_commit() {
     git commit ${1:+-e} -m "$MSG"
 }
 
+# claude usage
+# assumes statusline setting is enacted
+# see the rest of this repo for the statusline.sh script
+claude_usage() {
+  local file="${1:-$HOME/.claude/plan-usage.json}"
+  if [[ ! -s "$file" ]]; then
+    echo "claude_usage: no data in $file" >&2
+    return 1
+  fi
+
+  TZ="${CLAUDE_USAGE_TZ:-Australia/Sydney}" jq -r '
+    def dur: floor | if . <= 0 then "0m" else
+        (. / 86400 | floor) as $d | ((. % 86400) / 3600 | floor) as $h | ((. % 3600) / 60 | floor) as $m
+        | [ (if $d > 0 then "\($d)d" else empty end),
+            (if $d > 0 or $h > 0 then "\($h)h" else empty end),
+            "\($m)m" ] | join(" ") end;
+    def when: strflocaltime("%a %d %b %H:%M %Z");
+    def bar: ((. / 5) | floor | if . > 20 then 20 elif . < 0 then 0 else . end) as $n
+        | ([range($n) | "▰"] + [range(20 - $n) | "▱"]) | join("");
+    def row($label):
+        "\($label)  \(.used_percentage | bar)  \(.used_percentage)%\n" +
+        "        resets \(.resets_at | when) (in \(.resets_at - now | dur))";
+
+    "Claude plan usage",
+    (.five_hour | row("5-hour")),
+    (.seven_day | row("7-day ")),
+    "updated \(.updated_epoch | when) (\(now - .updated_epoch | dur) ago)"
+  ' "$file"
+}
+
 # neovim
 nv() {
     nvim
