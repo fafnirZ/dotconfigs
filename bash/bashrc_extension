@@ -65,6 +65,20 @@ cde() {
 	cd $(DORA_NOSELECT_FILE=1 de $@); 
 }
 
+# cryptographically random generator
+gimme() {
+  local len="${2:-10}" set
+  case "$1" in
+    num|n)   set='0-9' ;;
+    alpha|a) set='A-Za-z0-9' ;;
+    magic|m) set='A-Za-z0-9!@#$%^&*_-' ;;
+    *)       set='0-9'; len="${1:-10}" ;;
+  esac
+  # LC_ALL=C makes it work on macos too
+  LC_ALL=C tr -dc "$set" < /dev/urandom | head -c "$len"; echo
+}
+
+
 #############
 # diff tool #
 #############
@@ -321,3 +335,4 @@ agent() {
         ssh-add "$HOME/.ssh/$selected_key"
     fi
 }
+
