@@ -143,12 +143,11 @@ git_ai_issue() {
     command -v gh >/dev/null || { echo "gh not installed."; return 1; }
 
     echo "Describe the issue. Type as much as you like."
-    echo "Press Enter then Ctrl+D on an empty line when finished (Ctrl+C to
-  abort)."
+    echo "Press Enter then Ctrl+D on an empty line when finished (Ctrl+C to abort)."
     echo "----------------------------------------------------------------------"
     local INPUT
     INPUT=$(cat)
-    echo [[ -z "${INPUT//[[:space:]]/}" ]] && { echo "No input, aborting."; return 1; }
+    [[ -z "${INPUT//[[:space:]]/}" ]] && { echo "No input, aborting."; return 1; }
 
     echo "Formatting with Claude..."
     local MSG
@@ -167,8 +166,12 @@ git_ai_issue() {
 
     local TITLE BODY
     TITLE="${MSG%%$'\n'*}"
-    BODY="${MSG#*$'\n'}"
-    BODY="${BODY#"${BODY%%[![:space:]]*}"}"   # trim leading blank lines
+    if [[ "$MSG" == *$'\n'* ]]; then
+        BODY="${MSG#*$'\n'}"
+        BODY="${BODY#"${BODY%%[![:space:]]*}"}"   # trim leading blank lines
+    else
+        BODY=""
+    fi
 
     printf '\n\e[1m%s\e[0m\n\n%s\n\n' "$TITLE" "$BODY"
     read -rp "Create this issue? [y/N] " ans
@@ -176,7 +179,6 @@ git_ai_issue() {
 
     gh issue create --title "$TITLE" --body "$BODY" "$@"
 }
-
 # claude usage
 # assumes statusline setting is enacted
 # see the rest of this repo for the statusline.sh script
