@@ -377,3 +377,14 @@ agent() {
     fi
 }
 
+
+#
+# openssl aes
+#
+
+aes_enc() {
+    echo -n $1 | openssl enc -aes-256-cbc -pbkdf2 -a -salt 
+}
+aes_dec() {
+    echo $1 | openssl enc -aes-256-cbc -pbkdf2 -a -d -salt
+}
